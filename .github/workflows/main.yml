@@ -34,7 +34,7 @@ jobs:
         
         - name: Upload jar file as artifact
           run: mkdir staging && cp gradle/wrapper/gradle-wrapper.jar staging/
-        - uses: actions/upload-artifact@v2
+        - uses: actions/upload-artifact@v4
           with:
             name: Package
             path: staging
