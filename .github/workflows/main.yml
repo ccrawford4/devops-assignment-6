@@ -10,6 +10,9 @@ jobs:
         steps:
         - name: Checkout code
           uses: actions/checkout@v4
+
+        - name: Deploy Local MySQL Server
+          run: './docker.sh'
         
         - name: Set up JDK 17
           uses: actions/setup-java@v4
@@ -20,8 +23,8 @@ jobs:
         - name: Setup Gradle
           uses: gradle/gradle-build-action@v2
         
-        - name: Deploy Local MySQL Server
-          run: './docker.sh'
+        - name: Gradle Wrapper
+          run: gradle wrapper
             
         - name: Build with Gradle
           run: ./gradlew build
