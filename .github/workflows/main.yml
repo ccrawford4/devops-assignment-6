@@ -14,7 +14,13 @@ jobs:
               uses: actions/checkout@v4
             
             - name: Deploy Local MySQL Server
-              run: './docker.sh'
+              run: |
+                docker run -it --rm \
+                -p 3306:3306 \
+                -e MYSQL_DATABASE=mn_playground \
+                -e MYSQL_ROOT_PASSWORD=password \
+                -e MYSQL_ALLOW_EMPTY_PASSWORD=true \
+                mysql:8
           
             - name: Build with Gradle
               run: ./gradlew build
