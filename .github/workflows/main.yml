@@ -1,0 +1,26 @@
+name: 'Build, Test and Deploy Gradle Project'
+
+on: 
+    push:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        container:
+            image: gradle:jdk17
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            
+            - name: Deploy Local MySQL Server
+              run: './docker.sh'
+          
+            - name: Build with Gradle
+              run: ./gradlew build
+            
+            - name: Test with Gradle
+              run: ./gradlew test
+            
+
+
